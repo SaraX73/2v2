@@ -1,4 +1,7 @@
-require("dotenv").config();//?
+try{
+require("dotenv").config();
+
+require("express")().get("/",(req,res)=>res.send("{\"hellow\":\"world\"}")).listen(1273);
 
 const config = require('./config.json');
 const Discord = require("discord.js");
@@ -41,5 +44,6 @@ client.on(Events.InteractionCreate,async(int)=>{try{
 }catch(e){console.error(e)};});
 
 client.on("ready",()=>console.log(client.user.tag));
-client.login(config.token);
+client.login(process.env.token);
 
+}catch(e){console.log(e)};
