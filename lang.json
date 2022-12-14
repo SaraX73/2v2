@@ -1,0 +1,109 @@
+{
+ "title": ["TickOatTwo 2v2 - Wip"],
+ "main": {
+  "description": [
+   "**TickOatTwo with a twist! ${:rbgy_y:}**",
+   "",
+   "4 players splits into two teams to play in a 5x5 board",
+   "You stop playing once you score a point for your team, the first team that scores 2 points wins.",
+   "for more info check ``${cmd} rules``"
+  ],
+  "fields": [
+   {
+    "name": ["**Other commands:**"],
+    "value": [
+     "**``${cmd} create``** Create a new game lobby",
+     "**``${cmd} refresh``** {*message_id} {channel_id} locate a game lobby and move it to the bottom of this channel",
+     "**``${cmd} edit``** allow players to change their team (host only)",
+     "**``${cmd} status``** shows the status of the lobby and each player in it"
+     ]
+   }
+   ]
+ },
+ "rules": {
+  "description": [
+   "**Game rules as of ``v22.12.9.wip1``**",
+   "",
+   "",
+   "The game has a **5x5** board, 2 teams (**team xy ${:rb_b:}** & **team 45° ${:gy_y:}**), and 4 players with 4 unique colors. **Red (${:r_r:})** & **Blue (${:b_b:})** for team xy, **Green (${:g_g:})** & **Yellow (${:y_y:})** for team 45°",
+   "",
+   "Players take turns by order, **Red (${:r_r:})** then **Blue (${:b_b:})** then **Green (${:g_g:})** then **Yellow (${:y_y:})**",
+   "",
+   "A player can play in their turn on any tile except:",
+   "**1.** if they previously played on it during the current match",
+   "**2.** if the tile is locked",
+   "",
+   "A tile is locked when:",
+   "**1.** A player play on it, that's a ``\"Soft lock\"`` and it's indicated with a white square ${:s_rbgy_y:}, it's removed once the mentioned player on another tile in their next turn",
+   "**2.** A player scores a point, all 3 tiles that's a part of thier line-of-3 will be locked till the end of the match, that's a ``\"Hard lock\"`` and it's indicated with a black square ${:h_rbgy_y:}",
+   "",
+   "A tile is qualified to be a part of someone's line-of-3 when it has at least 1 color from each team",
+   "",
+   "A player scores a point for thier team when they play the last move to make 3 qualified tiles in a row (horizontal, vertical or diagonal), that's a line-of-3",
+   "",
+   "When a player scores a point they will not be able to play (ignored from the turn order) for the rest of the match",
+   "",
+   "A \"Hard locked\" tile can't be a part of someone else's line-of-3",
+   "",
+   "The first team to scores 2 points wins the match!"
+  ],
+  "descriptionasta": [
+    "قواعد اللعبة حسب ``v23.12.7.wip0``",
+    "" ,
+    "" ,
+    "تحتوي اللعبة على لوحة بحجم ** 5x5 ** , وفريقان (** الفريق xy ** و ** الفريق 45 ° **) , و 4 لاعبين بأربعة ألوان مختلفة (** أحمر (${:red:}) ** & ** أزرق (${:blue:}) ** للفريق xy, ** أخضر (${:green:}) ** & ** أصفر (${:yellow:}) ** للفريق 45 °) ",
+    "" ,
+    "يتناوب اللاعبون العب بالأدوار حسب الترتيب , ** أحمر (${:red:}) ** ثم ** أزرق (${:blue:}) ** ثم ** أخضر (${:green:}) ** ثم ** أصفر (${:yellow:}) ** ",
+    "" ,
+    "يمكن للاعب أن يلعب بدوره على أي مربع باستثناء:" ,
+    "** 1. ** إذا سبق له أن لعب عليها أثناء المباراة الحالية" ,
+    "** 2. ** إذا تم قفل المربع" ,
+    "" ,
+    "يتم قفل المربع عندما:" ,
+    "** 1. ** يلعب احد عليه , هذا يسمى``\"قفل خفيف\"``ويشار إليه بمربع أبيض , يتم إزالته عندما يلعب اللاعب المذكور على مربع أخر في دوره التالي" ,
+    "** 2. ** عندما يسجل لاعب نقطة , كل المربعات الثلاثة التي تشكل جزءًا من خط-من-ثلاثة سيتم قفلها حتى نهاية المباراة , وهذا يسمى ``\"قفل قوي\"`` ويشار إليه بمربع أسود ",
+    "" ,
+    "المربع مؤهل ليكون جزءًا من خط-من-ثلاثة عندما يحتوي على لون واحد على الأقل من كل فريق" ,
+    "" ,
+    "يسجل اللاعب نقطة لفريقه عندما يلعب آخر حركة ليصنع 3 مربعات مؤهلة على التوالي (أفقيًا أو رأسيًا أو بشكل مائل) , وهذا هو خط-من-ثلاثة" ,
+    "" ,
+    "عندما يسجل لاعب نقطة لن يتمكن من اللعب (يتم تجاهله من ترتيب الأدوار) لبقية المباراة", 
+    "",
+    "أي مربع مقفول ب\"قفل قوي\" لا يمكن أن يكون جزء من خط-من-ثلاثة للاعب اخر",
+    "",
+    "أول فريق يسجل نقطتين يفوز بالمباراة!"
+   ]
+
+
+
+ },
+ "create": {
+  "description": [
+   "**Creating a lobby - waiting for ${wait}**",
+   "",
+   "Host: <@${hostId}>",
+   "Players count: ${playersCount}/4 ${:status_${status}:}"
+   ],
+   "team1": {
+    "name": [
+     "(${:rb_b:}) Team xy ${playersCount}/2 ${:status_${status}:}"
+     ],
+     "value": [
+      "1. ${player1} (${:r_r:})",
+      "2. ${player2} (${:b_b:})",
+      "3. ${player3} (switch)"
+     ]
+   },
+   "team2": {
+    "name": [
+        "(${:gy_y:}) Team 45° ${playersCount}/2 ${:status_${status}:}"
+        ],
+    "value": [
+         "1. ${player1} (${:g_g:})",
+         "2. ${player2} (${:y_y:})",
+         "3. ${player3} (switch)"
+        ]
+   }
+ },
+ "emoji": [" ${:${e}:}"]
+}
